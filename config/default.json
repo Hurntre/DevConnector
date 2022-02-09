@@ -1,4 +1,0 @@
-{
-	"mongoURI": "mongodb+srv://Admin:admin@devconnector.tn6ta.mongodb.net/devConnector?retryWrites=true&w=majority",
-	"jwtSecret": "tlsKey"
-}
