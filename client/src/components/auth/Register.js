@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+// import axios from 'axios';
 
-const Register = () => {
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -8,10 +13,33 @@ const Register = () => {
     password2: '',
   });
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = e => {
-      e.preventDefault()
-  }
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert('Passwords do not match', 'danger', 3000);
+    } else {
+      //   const newUser = {
+      //     name,
+      //     email,
+      //     password,
+      //   };
+      //   try {
+      //     const config = {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //     };
+      //     const body = JSON.stringify(newUser);
+      // // the route works because we already specified the proxy in the package.json
+      //     const res = await axios.post('/api/users', body, config);
+      //     console.log(res.data);
+      //   } catch (err) {
+      //     console.error(err.response.data);
+      //   }
+      console.log('SUCCESS');
+    }
+  };
 
   const { name, email, password, password2 } = formData;
   return (
@@ -20,7 +48,7 @@ const Register = () => {
       <p className='lead'>
         <i className='fas fa-user'></i> Create Your Account
       </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
+      <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <input
             type='text'
@@ -69,10 +97,14 @@ const Register = () => {
         <input type='submit' className='btn btn-primary' value='Register' />
       </form>
       <p className='my-1'>
-        Already have an account? <a href='login.html'>Sign In</a>
+        Already have an account? <Link to='/login'>Sign In</Link>
       </p>
     </section>
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);
