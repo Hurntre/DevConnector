@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors');
 const userRoutes = require('./routes/api/users');
 const authRoutes = require('./routes/api/auth');
 const profileRoutes = require('./routes/api/profile');
@@ -13,6 +14,7 @@ connectDB();
 
 // init Middleware
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 app.get('/', (req, res) => res.send('API running'));
 
