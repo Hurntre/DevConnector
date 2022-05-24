@@ -31,7 +31,6 @@ const AddExperience = ({ addExperience }) => {
         </p>
         <small>* = required field</small>
         <form className='form' onSubmit={e => {
-          console.log(formData) 
             e.preventDefault();
             addExperience(formData)
         }}>
