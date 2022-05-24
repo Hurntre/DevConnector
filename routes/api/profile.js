@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const { body, validationResult } = require('express-validator');
 const request = require('request');
 
@@ -70,8 +71,10 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (githubUsername) profileFields.githubUsername = githubUsername;
-    if (skills) {
+    if (skills && !Array.isArray(skills)) {
       profileFields.skills = skills.split(',').map((skill) => skill.trim());
+    } else {
+      profileFields.skills = skills
     }
 
     // Build Social Object
@@ -148,7 +151,8 @@ router.get('/user/:userID', async (req, res) => {
 // @access Private
 router.delete('/', auth, async (req, res) => {
   try {
-    // @todo - remove user's posts
+    // Remove user's posts
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
