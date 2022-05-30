@@ -53,7 +53,7 @@ export const getProfileById= (userId) => async (dispatch) => {
 };
 
 // Get Github repos
-export const getGithubRepo = (username) => async (dispatch) => {
+export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await axios.get(`http://localhost:5000/api/profile/github/${username}`);
     dispatch({

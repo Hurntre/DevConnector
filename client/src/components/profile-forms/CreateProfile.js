@@ -12,7 +12,7 @@ const CreateProfile = ({ createProfile, history }) => {
     location: '',
     status: '',
     skills: '',
-    githubusername: '',
+    githubUsername: '',
     bio: '',
     twitter: '',
     facebook: '',
@@ -29,7 +29,7 @@ const CreateProfile = ({ createProfile, history }) => {
     location,
     status,
     skills,
-    githubusername,
+    githubUsername,
     bio,
     twitter,
     facebook,
@@ -114,8 +114,8 @@ const CreateProfile = ({ createProfile, history }) => {
           <input
             type='text'
             placeholder='Github Username'
-            name='githubusername'
-            value={githubusername}
+            name='githubUsername'
+            value={githubUsername}
             onChange={(e) => onChange(e)}
           />
           <small className='form-text'>
