@@ -12,6 +12,8 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import ProtectedRoute from './components/routing/ProtectedRoute';
 // Redux
 import { Provider } from 'react-redux';
@@ -79,6 +81,22 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <AddEducation />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/posts'
+              element={
+                <ProtectedRoute>
+                  <Posts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/posts/:id'
+              element={
+                <ProtectedRoute>
+                  <Post />
                 </ProtectedRoute>
               }
             />

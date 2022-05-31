@@ -44,7 +44,7 @@ export const register =
       };
       const body = JSON.stringify({ name, email, password });
       // the route works because we already specified the proxy in the package.json
-      const res = await axios.post('/api/users', body, config);
+      const res = await axios.post('http://localhost:5000/api/users', body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
